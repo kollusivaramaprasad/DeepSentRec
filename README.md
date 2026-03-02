@@ -1,137 +1,173 @@
-________________________________________
-DeepSentRec
-A Deep Learning-Based Sentiment-Aware Product Recommendation System with Hybrid Filtering and Reinforcement Learning
-________________________________________
-📌 Overview
-DeepSentRec is a complete, research-grade implementation of a Sentiment-Aware Hybrid Recommendation System enhanced with Reinforcement Learning-based dynamic reranking.
-The framework integrates:
-•	🔎 Transformer-based Sentiment Modeling (DistilBERT)
-•	🤝 Hybrid Collaborative + Content-Based Filtering (NMF + SBERT)
-•	🎯 Adaptive Reranking using PPO (Proximal Policy Optimization)
-•	📊 Full evaluation pipeline with Precision@K, NDCG@K, MAP@K, HitRate
-The implementation strictly follows the proposed methodology of the DeepSentRec research framework and is modularized into four primary components.
-________________________________________
-🏗 System Architecture
+# DeepSentRec
+## A Deep Learning-Based Sentiment-Aware Product Recommendation System with Hybrid Filtering and Reinforcement Learning
+
+---
+
+## 📌 Overview
+
+**DeepSentRec** is a research-grade implementation of a **Sentiment-Aware Hybrid Recommendation System** enhanced with **Reinforcement Learning-based Dynamic Reranking**.
+
+The framework combines Natural Language Processing, Recommendation Systems, and Reinforcement Learning to provide adaptive and personalized Top-N product recommendations.
+
+---
+
+## 🚀 Key Features
+
+- 🔎 Transformer-based Sentiment Modeling using **DistilBERT**
+- 🤝 Hybrid Recommendation Framework
+  - Collaborative Filtering (NMF)
+  - Content-Based Filtering (SBERT)
+- 🎯 Reinforcement Learning Reranking using **PPO**
+- 📊 Complete Recommendation Evaluation Pipeline
+- 🌐 REST API Deployment using Flask
+- 🧠 Modular Research-Oriented Architecture
+
+---
+
+## 🏗 System Architecture
+
+
 Raw Reviews
-   ↓
-Module 1: Data Standardization & Preprocessing
-   ↓
-Module 2: SentimentBERT (DistilBERT Fine-Tuning)
-   ↓
-Module 3: HybridCF-SBERT
-        - NMF Collaborative Filtering
-        - SBERT Item Embeddings
-        - Hybrid Score Fusion
-   ↓
-Module 4: RLRanker-PPO
-        - Offline RL Environment
-        - Reward Modeling
-        - Dynamic Reranking
-   ↓
+↓
+Data Standardization & Preprocessing
+↓
+SentimentBERT (DistilBERT Fine-Tuning)
+↓
+HybridCF-SBERT
+├── NMF Collaborative Filtering
+├── SBERT Item Embeddings
+└── Hybrid Score Fusion
+↓
+RLRanker-PPO
+├── Offline RL Environment
+├── Reward Modeling
+└── Dynamic Reranking
+↓
 Final Top-N Recommendations
-________________________________________
-📂 Repository Structure
+
+
+---
+
+## 📂 Repository Structure
+
+
 DeepSentRec/
 │
 ├── data/
-│   ├── amazon_loader.py
-│   ├── yelp_loader.py
-│   ├── kaggle_loader.py
-│   ├── imdb_loader.py
-│   └── split_interactions.py
+│ ├── amazon_loader.py
+│ ├── yelp_loader.py
+│ ├── kaggle_loader.py
+│ ├── imdb_loader.py
+│ └── split_interactions.py
 │
 ├── preprocessing/
-│   └── text_cleaner.py
+│ └── text_cleaner.py
 │
 ├── models/
-│   ├── sentimentbert/
-│   │   ├── train_sentiment.py
-│   │   ├── infer_sentiment.py
-│   │   └── dataset.py
-│   │
-│   ├── hybrid/
-│   │   ├── build_interactions.py
-│   │   ├── nmf_model.py
-│   │   ├── sbert_items.py
-│   │   ├── hybrid_scorer.py
-│   │   ├── train_hybrid.py
-│   │   └── evaluate_hybrid.py
-│   │
-│   └── rl_ranker/
-│       ├── environment.py
-│       ├── reward_function.py
-│       ├── build_episodes.py
-│       ├── train_ppo.py
-│       └── rerank.py
+│ ├── sentimentbert/
+│ │ ├── train_sentiment.py
+│ │ ├── infer_sentiment.py
+│ │ └── dataset.py
+│ │
+│ ├── hybrid/
+│ │ ├── build_interactions.py
+│ │ ├── nmf_model.py
+│ │ ├── sbert_items.py
+│ │ ├── hybrid_scorer.py
+│ │ ├── train_hybrid.py
+│ │ └── evaluate_hybrid.py
+│ │
+│ └── rl_ranker/
+│ ├── environment.py
+│ ├── reward_function.py
+│ ├── build_episodes.py
+│ ├── train_ppo.py
+│ └── rerank.py
 │
 ├── evaluation/
-│   └── recommendation_metrics.py
+│ └── recommendation_metrics.py
 │
 ├── api/
-│   └── flask_app.py
+│ └── flask_app.py
 │
 ├── configs/
-│   └── hyperparameters.yaml
+│ └── hyperparameters.yaml
 │
 ├── build_dataset.py
 ├── main_train_pipeline.py
 ├── main_inference_pipeline.py
 ├── requirements.txt
 └── README.md
-________________________________________
-🔧 Installation
-1️⃣ Clone the repository
+
+
+---
+
+## 🔧 Installation
+
+### 1️⃣ Clone Repository
+
+```bash
 git clone https://github.com/YOUR_USERNAME/DeepSentRec.git
 cd DeepSentRec
-2️⃣ Create environment (recommended)
+2️⃣ Create Environment
+Conda (Recommended)
 conda create -n deepsentrec python=3.10
 conda activate deepsentrec
-or
+Virtual Environment
 python -m venv venv
 source venv/bin/activate
-3️⃣ Install dependencies
+3️⃣ Install Dependencies
 pip install -r requirements.txt
-Key libraries:
-•	PyTorch
-•	Transformers
-•	Sentence-Transformers
-•	scikit-learn
-•	Stable-Baselines3
-•	Gymnasium
-•	Flask
-•	Pandas / NumPy
-________________________________________
+📦 Main Libraries Used
+
+PyTorch
+
+Transformers
+
+Sentence-Transformers
+
+Scikit-learn
+
+Stable-Baselines3
+
+Gymnasium
+
+Flask
+
+Pandas
+
+NumPy
+
 📊 Datasets
-You must download datasets separately and place them under data/raw/.
-Supported Datasets
+
+Download datasets manually and place them in:
+
+data/raw/
 Dataset	Purpose	Source
-Amazon Reviews	Recommendation training	UCSD McAuley Lab
-Yelp Open Dataset	Cross-domain training	Yelp Dataset
-IMDB Reviews	Sentiment pretraining	HuggingFace imdb
-Kaggle E-Commerce Reviews	Optional evaluation	Kaggle
-________________________________________
+Amazon Reviews	Recommendation Training	UCSD McAuley Lab
+Yelp Dataset	Cross-Domain Training	Yelp
+IMDB Reviews	Sentiment Pretraining	HuggingFace
+Kaggle Reviews	Optional Evaluation	Kaggle
 🚀 Usage Guide
-________________________________________
 MODULE 1 — Dataset Standardization
-Amazon
+Amazon Dataset
 python build_dataset.py \
   --dataset amazon \
   --input data/raw/amazon.json.gz \
   --out data/processed/amazon.parquet \
   --clean \
   --limit 200000
-Yelp
+Yelp Dataset
 python build_dataset.py \
   --dataset yelp \
   --input data/raw/yelp_review.json \
   --out data/processed/yelp.parquet \
   --clean
-IMDB
+IMDB Dataset
 python build_dataset.py \
   --dataset imdb_hf \
   --split train \
   --out data/processed/imdb_train.parquet
-________________________________________
 MODULE 2 — SentimentBERT
 Stage 1: IMDB Pretraining
 python -m DeepSentRec.models.sentimentbert.train_sentiment \
@@ -139,108 +175,101 @@ python -m DeepSentRec.models.sentimentbert.train_sentiment \
   --train data/processed/imdb_train.parquet \
   --valid data/processed/imdb_test.parquet \
   --output_dir artifacts/sentimentbert
-Stage 2: Fine-tune on Amazon/Yelp
+Stage 2: Fine-Tuning
 python -m DeepSentRec.models.sentimentbert.train_sentiment \
   --stage stage2_finetune \
   --train data/processed/amazon.parquet \
   --output_dir artifacts/sentimentbert
-Inference
+Sentiment Inference
 python -m DeepSentRec.models.sentimentbert.infer_sentiment \
-  --model_dir artifacts/sentimentbert/finetune_3class_best \
+  --model_dir artifacts/sentimentbert \
   --data data/processed/amazon.parquet \
-  --out_table data/processed/amazon_with_sentiment.parquet \
-  --out_embeddings data/processed/amazon_sentiment_embeds.npy
-________________________________________
+  --out_table data/processed/amazon_with_sentiment.parquet
 MODULE 3 — HybridCF-SBERT
 Build Interactions
-python -m DeepSentRec.models.hybrid.build_interactions \
-  --input data/processed/amazon_with_sentiment.parquet \
-  --out_dir artifacts/interactions
-Split Train/Test
-python data/split_interactions.py \
-  --input artifacts/interactions/interactions.parquet \
-  --out_dir artifacts/interactions
-Build SBERT Embeddings
-python -m DeepSentRec.models.hybrid.sbert_items \
-  --input data/processed/amazon_with_sentiment.parquet \
-  --out_dir artifacts/sbert_items
+python -m DeepSentRec.models.hybrid.build_interactions
 Train Hybrid Model
-python -m DeepSentRec.models.hybrid.train_hybrid \
-  --interactions artifacts/interactions/interactions_train.parquet \
-  --mappings artifacts/interactions/mappings.npz \
-  --item_ids artifacts/sbert_items/item_ids.npy \
-  --item_embeddings artifacts/sbert_items/item_embeddings.npy \
-  --out_dir artifacts/hybrid
-Evaluate
-python -m DeepSentRec.models.hybrid.evaluate_hybrid \
-  --train_interactions artifacts/interactions/interactions_train.parquet \
-  --test_interactions artifacts/interactions/interactions_test.parquet \
-  --artifacts artifacts/hybrid
-________________________________________
-MODULE 4 — RLRanker-PPO
+python -m DeepSentRec.models.hybrid.train_hybrid
+Evaluate Hybrid Model
+python -m DeepSentRec.models.hybrid.evaluate_hybrid
+MODULE 4 — RLRanker (PPO)
 Build Offline Episodes
-python -m DeepSentRec.models.rl_ranker.build_episodes \
-  --train_interactions artifacts/interactions/interactions_train.parquet \
-  --test_interactions artifacts/interactions/interactions_test.parquet \
-  --hybrid_artifacts artifacts/hybrid \
-  --out artifacts/rl/episodes.jsonl
-Train PPO
+python -m DeepSentRec.models.rl_ranker.build_episodes
+Train PPO Ranker
 python -m DeepSentRec.models.rl_ranker.train_ppo \
-  --episodes artifacts/rl/episodes.jsonl \
-  --out_dir artifacts/rl \
   --timesteps 100000
-________________________________________
 🧠 End-to-End Training
 python main_train_pipeline.py \
   --amazon_table data/processed/amazon.parquet \
   --imdb_train data/processed/imdb_train.parquet \
   --imdb_test data/processed/imdb_test.parquet \
   --out_dir artifacts
-________________________________________
 🌐 API Demo
-python api/flask_app.py
-Access:
-http://localhost:5000/recommend?user_index=0
-________________________________________
-📈 Evaluation Metrics
-•	Precision@K
-•	Recall@K
-•	HitRate@K
-•	NDCG@K
-•	MAP@K
-Located in:
-evaluation/recommendation_metrics.py
-________________________________________
-⚙️ Hyperparameters
-Edit:
-configs/hyperparameters.yaml
-Includes:
-•	Sentiment model learning rate
-•	NMF latent factors
-•	Hybrid α weight
-•	PPO gamma, clip range
-•	Reward weights
-________________________________________
-🔬 Research Notes
-•	DistilBERT fine-tuned for 3-class sentiment
-•	NMF latent representation for collaborative filtering
-•	SBERT for semantic similarity
-•	PPO for adaptive ranking optimization
-•	Offline RL simulation based on interaction logs
-________________________________________
-⚠️ Important Notes
-•	RL component is offline simulation.
-•	For production, connect reward function to live click logs.
-•	Large datasets require GPU for transformer training.
-•	SBERT embedding generation can be memory intensive.
-________________________________________
-📜 License
-This repository is released for research and academic purposes.
-________________________________________
-📧 Contact
-For research collaboration or questions:
-•	Author: [Your Name]
-•	Email: your.email@example.com
-•	Institution: [Your Institution]
-________________________________________
 
+Run API:
+
+python api/flask_app.py
+
+Access:
+
+http://localhost:5000/recommend?user_index=0
+📈 Evaluation Metrics
+
+Precision@K
+
+Recall@K
+
+HitRate@K
+
+NDCG@K
+
+MAP@K
+
+Location:
+
+evaluation/recommendation_metrics.py
+⚙️ Hyperparameter Configuration
+
+Edit:
+
+configs/hyperparameters.yaml
+
+Includes:
+
+Sentiment Learning Rate
+
+NMF Latent Factors
+
+Hybrid Fusion Weight
+
+PPO Gamma
+
+PPO Clip Range
+
+Reward Weights
+
+🔬 Research Highlights
+
+DistilBERT-based Sentiment Understanding
+
+Hybrid Collaborative + Content Filtering
+
+Semantic Similarity via SBERT
+
+PPO-based Adaptive Recommendation Ranking
+
+Offline Reinforcement Learning Simulation
+
+⚠️ Important Notes
+
+RL component operates in offline simulation mode.
+
+GPU recommended for transformer training.
+
+Large datasets require high memory.
+
+Production deployment requires live interaction feedback.
+
+📜 License
+
+This project is released for research and academic purposes only.
