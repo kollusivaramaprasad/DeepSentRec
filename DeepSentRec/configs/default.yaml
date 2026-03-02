@@ -1,0 +1,37 @@
+random_seed: 42
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+schema:
+  required_columns:
+  - user_id
+  - item_id
+  - review_text
+  - rating
+  - timestamp
+  - source
+  optional_columns:
+  - review_id
+  - sentiment_label
+  - sentiment_score
+sentiment_mapping:
+  negative:
+  - 1
+  - 2
+  neutral:
+  - 3
+  positive:
+  - 4
+  - 5
+amazon:
+  format: json_gz
+  file_pattern: '*.json.gz'
+yelp:
+  format: json_lines
+  file_pattern: '*.json'
+imdb:
+  format: hf_or_csv
+  hf_name: imdb
+kaggle:
+  format: csv
+  file_pattern: '*.csv'

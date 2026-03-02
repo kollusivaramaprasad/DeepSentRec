@@ -1,0 +1,28 @@
+# DeepSentRec default hyperparameters (edit as needed)
+
+sentimentbert:
+  base_model: distilbert-base-uncased
+  max_length: 192
+  lr: 2.0e-5
+  batch_size: 32
+  epochs: 5
+
+hybrid:
+  nmf_latent_k: 50
+  alpha: 0.5
+  k_candidates: 20
+  sbert_model: sentence-transformers/all-MiniLM-L6-v2
+  max_reviews_per_item: 3
+
+rlranker:
+  algorithm: PPO
+  gamma: 0.99
+  lr: 3.0e-4
+  clip_range: 0.2
+  batch_size: 64
+  timesteps: 100000
+  action_type: swap
+  reward:
+    w_click: 1.0
+    w_purchase: 3.0
+    w_skip: 1.0
