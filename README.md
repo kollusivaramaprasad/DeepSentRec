@@ -200,10 +200,4 @@ Released for research and academic purposes.
 
 ------------------------------------------------------------------------
 
-## 📧 Contact
 
-Author: Your Name\
-Email: your.email@example.com\
-Institution: Your Institution
-
-⭐ Star this repository if you find it useful!
